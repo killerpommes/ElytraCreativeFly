@@ -1,5 +1,6 @@
 package com.tizio.elytracreativefly;
 
+import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
@@ -40,7 +41,7 @@ public class CuriosCompat {
                     public void onUnequip(SlotContext slotContext, ItemStack newStack) {
                         LivingEntity entity = slotContext.entity();
                         if (entity instanceof Player player){
-                            if (!player.getInventory().getArmor(2).is(ElytraCreativeFly.ELYTRAS)){
+                            if (!player.getItemBySlot(EquipmentSlot.CHEST).is(ElytraCreativeFly.ELYTRAS)) {
                             player.getAbilities().mayfly = false;
                             player.getAbilities().flying = false;
                             player.onUpdateAbilities();

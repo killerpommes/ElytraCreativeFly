@@ -1,8 +1,9 @@
 package com.tizio.elytracreativefly;
 
 import net.minecraft.core.registries.Registries;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import net.minecraft.tags.TagKey;
+import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
@@ -18,7 +19,7 @@ public class ElytraCreativeFly {
 
     public static final Boolean CURIOS_LOADED = ModList.get().isLoaded("curios");
 
-    public static final TagKey<Item> ELYTRAS = TagKey.create(Registries.ITEM, ResourceLocation.fromNamespaceAndPath("elytracreativefly","elytra"));
+    public static final TagKey<Item> ELYTRAS = TagKey.create(Registries.ITEM, Identifier.fromNamespaceAndPath("elytracreativefly", "elytra"));
 
     public ElytraCreativeFly(IEventBus modEventBus, ModContainer modContainer) {
 
@@ -37,7 +38,7 @@ public class ElytraCreativeFly {
     }
 
     public static void checkElytraAndFly(Player player){
-        ItemStack item = player.getInventory().getArmor(2);
+        ItemStack item = player.getItemBySlot(EquipmentSlot.CHEST);
         if (item.is(ELYTRAS) || (CURIOS_LOADED && CuriosCompat.hasElytra(player))){
             player.getAbilities().mayfly = true;
             player.onUpdateAbilities();
